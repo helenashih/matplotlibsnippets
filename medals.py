@@ -7,6 +7,47 @@ import pandas as pd
 medals = pd.read_csv('medals_by_country_2016.csv', index_col=0)
 fig, ax = plt.subplots()
 
+# Rowing and Gymnastics men's data
+ax.bar("Rowing", mens_rowing["Height"].mean())
+ax.bar("Gymnastics", mens_gymnastics["Height"].mean())
+
+# ax.hist(mens_rowing["Height"], bins=5) or bins=[150, 160, 170, 180, 190, 200, 210]
+
+# ax.hist(mens_rowing["Height"], bins=5) or bins=[150, 160, 170, 180, 190, 200, 210]
+ax.hist(mens_rowing["Height"], label="Rowing", bins=[150, 160, 170, 180, 190, 200, 210], histtype="step")
+ax.hist(mens_gymnastics["Height"], label="Gymnastics", bins=[150, 160, 170, 180, 190, 200, 210], histtype="step")
+ax.set_xlabel("Height (cm)")
+ax.set_ylabel("# of observations")
+ax.legend()
+
+#Exercise  1
+# Plot a histogram of "Weight" for mens_rowing
+ax.hist(mens_rowing["Weight"])
+
+# Compare to histogram of "Weight" for mens_gymnastics
+ax.hist(mens_gymnastics["Weight"])
+
+# Set the x-axis label to "Weight (kg)"
+ax.set_xlabel("Weight (kg)")
+
+# Set the y-axis label to "# of observations"
+ax.set_ylabel("# of observations")
+
+#Exercise 2
+# Plot a histogram of "Weight" for mens_rowing
+ax.hist(mens_rowing["Weight"], label="Rowing", bins=5, histtype="step")
+
+# Compare to histogram of "Weight" for mens_gymnastics
+ax.hist(mens_gymnastics["Weight"], label="Gymnastics", bins=5, histtype="step")
+
+ax.set_xlabel("Weight (kg)")
+ax.set_ylabel("# of observations")
+
+# Add the legend and show the Figure
+ax.legend()
+plt.show()
+
+#Nmber of medals by country
 ax.bar(medals.index, medals["Gold"], label="Gold")
 ax.bar(medals.index, medals["Silver"], bottom=medals["Gold"], label="Silver")
 ax.bar(medals.index, medals["Bronze"], bottom=medals["Gold"] + medals["Silver"], label="Bronze")
